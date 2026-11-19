@@ -1,0 +1,15 @@
+# Windows / macOS clutter
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Editor folders
+.vscode/
+.idea/
+
+# Never commit backups, databases, archives or secrets
+*.sql
+*.gz
+*.zip
+*.bak
+.env
