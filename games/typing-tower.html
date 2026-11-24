@@ -44,16 +44,16 @@
             <li>Educational</li>
           </ul>
 
-          <div class="player">
-            <div class="player-frame" id="player-frame">
-              <button type="button" class="player-start" id="player-start" aria-label="Play Typing Tower">
+          <div class="player" style="--player-w: 640px; --player-ratio: 1.0000">
+            <div class="player-frame" data-game-src="../play/typing-tower/" data-game-title="Typing Tower">
+              <button type="button" class="player-start" aria-label="Play Typing Tower">
                 <img src="../assets/images/game-typing-tower.png" alt="" width="1058" height="307">
                 <span class="btn btn-pink btn-big">&#9654; Play</span>
               </button>
             </div>
             <div class="player-bar">
-              <p>The game loads right here (about 26&nbsp;MB).</p>
-              <button type="button" class="btn-small" id="player-fullscreen" disabled>&#x26F6; Fullscreen</button>
+              <p>The game loads right here (about 25&nbsp;MB).</p>
+              <button type="button" class="btn-small" data-player-fullscreen disabled>&#x26F6; Fullscreen</button>
             </div>
             <p class="mobile-note">Typing Tower needs a keyboard &mdash; it works best on a computer.</p>
           </div>
@@ -67,6 +67,7 @@
             </ol>
           </div>
         </div>
+
       </div>
     </section>
 
@@ -118,28 +119,6 @@
   </footer>
 
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-  <script>
-    // Load the game only when the visitor presses Play, so the page itself stays fast.
-    (function () {
-      var frame = document.getElementById('player-frame');
-      var start = document.getElementById('player-start');
-      var fullscreen = document.getElementById('player-fullscreen');
-      start.addEventListener('click', function () {
-        var iframe = document.createElement('iframe');
-        iframe.src = '../play/typing-tower/';
-        iframe.title = 'Typing Tower game';
-        iframe.allow = 'fullscreen; autoplay';
-        iframe.setAttribute('allowfullscreen', '');
-        iframe.addEventListener('load', function () { iframe.focus(); });
-        frame.replaceChild(iframe, start);
-        fullscreen.disabled = false;
-        fullscreen.addEventListener('click', function () {
-          var req = frame.requestFullscreen || frame.webkitRequestFullscreen;
-          if (req) req.call(frame);
-          iframe.focus();
-        });
-      });
-    })();
-  </script>
+  <script src="../assets/js/player.js"></script>
 </body>
 </html>

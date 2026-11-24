@@ -38,29 +38,37 @@
     <section class="section" style="padding-top:8px">
       <div class="wrap">
         <div class="portal">
-          <a href="https://mechdeve.itch.io/typing-screen-rider" target="_blank" rel="noopener" aria-label="Play Side Slide on itch.io">
-            <img class="portal-banner" src="../assets/images/game-side-slide.png" alt="Side Slide" width="1200" height="360">
-          </a>
+          <ul class="chips">
+            <li>Free</li>
+            <li>Plays in your browser</li>
+            <li>Educational</li>
+          </ul>
 
-          <div class="portal-panel">
-            <ul class="chips">
-              <li>Free</li>
-              <li>Plays in your browser</li>
-              <li>Educational</li>
-            </ul>
-            <a class="btn btn-pink btn-big" href="https://mechdeve.itch.io/typing-screen-rider" target="_blank" rel="noopener">&#9654; Play on itch.io</a>
-            <p class="portal-note">Opens Side Slide on itch.io in a new tab.</p>
+          <div class="player" style="--player-w: 640px; --player-ratio: 1.0000">
+            <div class="player-frame" data-game-src="../play/side-slide/" data-game-title="Side Slide">
+              <button type="button" class="player-start" aria-label="Play Side Slide">
+                <img src="../assets/images/game-side-slide.png" alt="" width="1200" height="360">
+                <span class="btn btn-pink btn-big">&#9654; Play</span>
+              </button>
+            </div>
+            <div class="player-bar">
+              <p>The game loads right here (about 21&nbsp;MB).</p>
+              <button type="button" class="btn-small" data-player-fullscreen disabled>&#x26F6; Fullscreen</button>
+            </div>
+            <p class="mobile-note">Side Slide needs a keyboard &mdash; it works best on a computer.</p>
           </div>
 
           <div class="howto">
             <h2>How to play</h2>
             <ol>
-              <li>Click <strong>Play on itch.io</strong> above.</li>
-              <li>On the itch.io page, press <strong>Run game</strong> and wait for it to load.</li>
-              <li>Use a computer with a keyboard &mdash; and keep your fingers on the home row!</li>
+              <li>Press <strong>Play</strong> and wait for the game to load.</li>
+              <li>Click inside the game so it can hear your keyboard.</li>
+              <li>Keep your fingers on the home row! Press <strong>Fullscreen</strong> for a bigger view, and <strong>Esc</strong> to leave it.</li>
             </ol>
           </div>
         </div>
+
+
       </div>
     </section>
 
@@ -112,5 +120,6 @@
   </footer>
 
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script src="../assets/js/player.js"></script>
 </body>
 </html>

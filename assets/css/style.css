@@ -267,10 +267,16 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--yellow); outlin
 .chips { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 0 0 26px; padding: 0; list-style: none; }
 .chips li { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; font-size: 0.9rem; font-weight: 600; color: var(--navy); }
 /* ---------- Playable game (Unity build in an iframe) ---------- */
-.player { max-width: 640px; margin: 18px auto 0; }
+/* Each game page sets --player-w (largest width) and --player-ratio (width / height).
+   The frame also shrinks so the whole game fits on screen without scrolling. */
+.player {
+  --player-w: 640px; --player-ratio: 1;
+  max-width: min(var(--player-w), calc((100vh - 150px) * var(--player-ratio)));
+  margin: 18px auto 0;
+}
 .player-frame {
   position: relative;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: var(--player-ratio);
   background: var(--navy);
   border-radius: var(--radius);
   box-shadow: var(--shadow);

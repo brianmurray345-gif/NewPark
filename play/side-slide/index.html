@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Side Slide | Typing Park</title>
+  <style>
+    html, body { margin: 0; height: 100%; background: #1c244b; overflow: hidden; }
+    body { display: flex; align-items: center; justify-content: center; font-family: "Poppins", "Segoe UI", system-ui, sans-serif; color: #fff; }
+    /* The game was designed for a 600x600 canvas: keep that shape and make it as large as fits. */
+    #game { width: min(100vw, calc(100vh * 600 / 600)); height: min(100vh, calc(100vw * 600 / 600)); display: block; background: #1c244b; outline: none; }
+    #loading { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; background: #1c244b; }
+    #loading p { margin: 0; font-size: 1.05rem; font-weight: 600; letter-spacing: 0.02em; }
+    .bar { width: min(320px, 70vw); height: 14px; border-radius: 999px; background: rgba(255,255,255,0.15); overflow: hidden; }
+    .bar span { display: block; height: 100%; width: 0; background: #8cc20f; border-radius: 999px; transition: width 0.2s; }
+    #error { display: none; max-width: 420px; padding: 0 20px; text-align: center; line-height: 1.5; }
+  </style>
+</head>
+<body>
+  <canvas id="game" tabindex="-1"></canvas>
+  <div id="loading">
+    <p id="status">Loading Side Slide&hellip;</p>
+    <div class="bar"><span id="progress"></span></div>
+    <p id="error"></p>
+  </div>
+
+  <script>
+    var canvas = document.getElementById('game');
+    var loading = document.getElementById('loading');
+    var progress = document.getElementById('progress');
+    var statusEl = document.getElementById('status');
+    var error = document.getElementById('error');
+
+    var config = {
+      dataUrl: 'Build/side-slide.data',
+      frameworkUrl: 'Build/side-slide.framework.js',
+      codeUrl: 'Build/side-slide.wasm',
+      streamingAssetsUrl: 'StreamingAssets',
+      companyName: 'Typing Park',
+      productName: 'Side Slide',
+      productVersion: '1.0',
+      showBanner: function (msg, type) { if (type === 'error') showError(msg); }
+    };
+
+    function showError(msg) {
+      statusEl.textContent = 'Sorry, the game could not start.';
+      error.textContent = msg;
+      error.style.display = 'block';
+      loading.style.display = 'flex';
+    }
+
+    var script = document.createElement('script');
+    script.src = 'Build/side-slide.loader.js';
+    script.onload = function () {
+      createUnityInstance(canvas, config, function (p) {
+        progress.style.width = Math.round(p * 100) + '%';
+      }).then(function () {
+        loading.style.display = 'none';
+        canvas.focus();
+      }).catch(showError);
+    };
+    script.onerror = function () { showError('The game files did not load. Check your connection and refresh the page.'); };
+    document.body.appendChild(script);
+
+    // Clicking anywhere gives the game keyboard focus.
+    document.addEventListener('pointerdown', function () { canvas.focus(); });
+  </script>
+</body>
+</html>

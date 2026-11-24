@@ -8,8 +8,8 @@
   <style>
     html, body { margin: 0; height: 100%; background: #1c244b; overflow: hidden; }
     body { display: flex; align-items: center; justify-content: center; font-family: "Poppins", "Segoe UI", system-ui, sans-serif; color: #fff; }
-    /* The game was designed for a 600x600 canvas: keep it square and as large as fits. */
-    #game { width: min(100vw, 100vh); height: min(100vw, 100vh); display: block; background: #1c244b; outline: none; }
+    /* The game was designed for a 600x600 canvas: keep that shape and make it as large as fits. */
+    #game { width: min(100vw, calc(100vh * 600 / 600)); height: min(100vh, calc(100vw * 600 / 600)); display: block; background: #1c244b; outline: none; }
     #loading { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; background: #1c244b; }
     #loading p { margin: 0; font-size: 1.05rem; font-weight: 600; letter-spacing: 0.02em; }
     .bar { width: min(320px, 70vw); height: 14px; border-radius: 999px; background: rgba(255,255,255,0.15); overflow: hidden; }
@@ -33,9 +33,9 @@
     var error = document.getElementById('error');
 
     var config = {
-      dataUrl: 'Build/TypingTower.data',
-      frameworkUrl: 'Build/TypingTower.framework.js',
-      codeUrl: 'Build/TypingTower.wasm',
+      dataUrl: 'Build/typing-tower.data',
+      frameworkUrl: 'Build/typing-tower.framework.js',
+      codeUrl: 'Build/typing-tower.wasm',
       streamingAssetsUrl: 'StreamingAssets',
       companyName: 'Typing Park',
       productName: 'Typing Tower',
@@ -51,7 +51,7 @@
     }
 
     var script = document.createElement('script');
-    script.src = 'Build/TypingTower.loader.js';
+    script.src = 'Build/typing-tower.loader.js';
     script.onload = function () {
       createUnityInstance(canvas, config, function (p) {
         progress.style.width = Math.round(p * 100) + '%';
