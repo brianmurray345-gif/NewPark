@@ -10,3 +10,10 @@
 *.jpg binary
 *.jpeg binary
 *.pdf binary
+*.ico binary
+
+# Unity WebGL build files
+*.wasm binary
+*.data binary
+*.framework.js -text -diff
+*.loader.js -text -diff
