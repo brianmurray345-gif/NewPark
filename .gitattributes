@@ -17,3 +17,4 @@
 *.data binary
 *.framework.js -text -diff
 *.loader.js -text -diff
+*.unityweb binary
